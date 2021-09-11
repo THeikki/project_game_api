@@ -8,11 +8,11 @@ var cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-//const contactRoute = require("./routes/contacts");
+const userRoute = require("./routes/users");
 
-//app.use("/api/contacts", contactRoute);
+app.use("/api/users", userRoute);
 
-app.get("/", (req, res) => {
+app.get("/api/", (req, res) => {
   res.send("Project_game_api")
 
 })
