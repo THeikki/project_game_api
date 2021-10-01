@@ -11,9 +11,28 @@ const userSchema = new Schema(
         },
         password: {
             type: String,
+            minLength: 3,
+            trim: true,
+            required: true
+        },
+        gameTimes: {
+            type: Number,
             required: true,
-            minlength: 4
-        }
+            default: 0,
+            cast:true
+        },
+        highScore: {
+            type: Number,
+            required: true,
+            default: 0,
+            cast: true
+        },
+        overallPoints: {
+            type: Number,
+            required: true,
+            default: 0,
+            cast: true
+        }  
     }
 );
 

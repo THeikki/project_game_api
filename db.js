@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
+require('dotenv').config();
 
-mongoose.connect("mongodb+srv://user1:player1@cluster0.432cc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true , useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB, { useNewUrlParser: true , useUnifiedTopology: true })
     .then(console.log("CONNECTED"))
     .catch((error) => console.log(error))
