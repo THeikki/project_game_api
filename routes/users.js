@@ -33,10 +33,15 @@ router.get("/:id", cAuth.checkAuth, async (req, res) => {
     Register new user
 */
 
-router.post("/register", (req, res) => {
+router.post("/register", async (req, res) => {
     const { username, password, gameTimes, highScore, overallPoints } = req.body
     const hashedPassword = bcrypt.hashSync(password, 10)
+    const existingUser = await User.findOne({ username: username })
     
+    if(existingUser) {
+        return res.json({message: "User name already taken"})
+    }
+
     const user = new User({     
         username,
         password: hashedPassword, 
@@ -52,6 +57,8 @@ router.post("/register", (req, res) => {
     else {
         return res.status(400).json({message: "Please give password"})
     }
+
+     
     
 })
 
@@ -111,8 +118,8 @@ router.put("/update/:id", cAuth.checkAuth, async (req, res) => {
     Delete user
 */
 
-router.delete("/:id", cAuth.checkAuth, async (req, res) => {
-    await User.findByIdAndDelete(req.params.id, (error, result) => {
+router.delete("/:id", cAuth.checkAuth, (req, res) => {
+    User.findByIdAndDelete(req.params.id, (error, result) => {
         if(result) {
             return res.status(200).json({message: "User deleted"})
         }      
