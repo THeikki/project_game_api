@@ -12,8 +12,8 @@ router.use(bodyParser.json());
     Find users
 */
 
-router.get("/", async (req, res) => {
-    await User.find()
+router.get("/", (req, res) => {
+    User.find()
     .then(users => res.status(200).json(users))
     .catch(error => res.status(400).json({message: error}))
 })
@@ -22,8 +22,8 @@ router.get("/", async (req, res) => {
     Find single user by id
 */
 
-router.get("/:id", cAuth.checkAuth, async (req, res) => {
-    await User.findById({ _id: req.params.id })
+router.get("/:id", cAuth.checkAuth, (req, res) => {
+    User.findById({ _id: req.params.id })
     .then(user => res.status(200).json(user))
     .catch(error => res.status(400).json({message: error}))
 
@@ -71,7 +71,7 @@ router.post("/login", async (req, res) => {
     const existingUser = await User.findOne({ username: username })
 
     if(!existingUser) {
-        return res.json({message: "User not found!"})
+        return res.json({message: "User is not found!"})
     }
 
     bcrypt.compare(password, existingUser.password, (error, result) => {
@@ -98,10 +98,10 @@ router.post("/login", async (req, res) => {
     Update User statistics
 */
 
-router.put("/update/:id", cAuth.checkAuth, async (req, res) => {
+router.put("/update/:id", cAuth.checkAuth, (req, res) => {
     var { gameTimes, highScore, overallPoints } = req.body
     
-    await User.findByIdAndUpdate({_id: req.params.id}, req.body)
+    User.findByIdAndUpdate({_id: req.params.id}, req.body)
         .then(user => {
             gameTimes = gameTimes,
             highScore = highScore,
