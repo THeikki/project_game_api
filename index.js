@@ -12,7 +12,7 @@ const userRoute = require("./routes/users");
 
 app.use("/api/users", userRoute);
 
-app.get("/api/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Project_game_api")
 
 })
