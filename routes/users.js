@@ -80,7 +80,7 @@ router.post("/login", async (req, res) => {
                 { username: result.username },
                 process.env.JWT_TOKEN,
                 {
-                  expiresIn: "10min",
+                  expiresIn: "2h",
                 }
               )          
             return res.status(200).json({
