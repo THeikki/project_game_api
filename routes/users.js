@@ -98,7 +98,7 @@ router.post("/login", async (req, res) => {
     Update User statistics
 */
 
-router.put("/update/:id", cAuth.checkAuth, (req, res) => {
+router.put("/update/:id", (req, res) => {
     var { gameTimes, highScore, overallPoints } = req.body
     
     User.findByIdAndUpdate({_id: req.params.id}, req.body)
