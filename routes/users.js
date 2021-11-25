@@ -117,7 +117,7 @@ router.put("/update/:id", cAuth.checkAuth, (req, res) => {
 /*
     Delete user
 */
-
+// TESTI
 router.delete("/:id", cAuth.checkAuth, (req, res) => {
     User.findByIdAndDelete(req.params.id, (error, result) => {
         if(result) {
