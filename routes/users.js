@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
     .then(users => res.status(200).json(users))
     .catch(error => res.status(400).json({message: error}))
 })
-
+//TESTI
 /*
     Find single user by id
 */
