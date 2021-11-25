@@ -97,7 +97,7 @@ router.post("/login", async (req, res) => {
 /*
     Update User statistics
 */
-
+// Tästä otettu authenticate poies
 router.put("/update/:id", (req, res) => {
     var { gameTimes, highScore, overallPoints } = req.body
     
